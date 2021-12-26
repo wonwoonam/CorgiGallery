@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var UploadedImage: UIImageView!
     @IBOutlet weak var UploadButton: UIButton!
     @IBOutlet weak var MintingButton: UIButton!
-    var walletAddress = "0x5617093f57683233239866058f2865D494e48b77"
+    var walletAddress = ""
     var tempImgUrl = ""
     var alert2Message = ""
     var tokenId = ""
@@ -83,7 +83,7 @@ class ViewController: UIViewController {
     
     func getAccount(completionHandler:  @escaping () -> ()){
         let url = "https://wallet-api.klaytnapi.com/v2/account"
-        let headers : HTTPHeaders = ["Authorization": "Basic S0FTS0tYN085WkFFNTJKN0RMOFY2UUg5OmZRZlRxRE5zQ3Aybk1VV3I3aU5fcWEzLTlUMlA4dkRqczJpY21ucUc=", "Content-Type": "application/json", "X-Chain-Id": "1001"]
+        let headers : HTTPHeaders = ["Content-Type": "application/json", "X-Chain-Id": "1001"]
         AF.request(url, method: .post, parameters: [:], encoding: JSONEncoding.default, headers: headers)
             .responseData { (response) in
                 switch response.result {
@@ -110,7 +110,7 @@ class ViewController: UIViewController {
         
         let param = ["to": walletAddress, "id": id, "uri": tempImgUrl]
         let url = "https://kip17-api.klaytnapi.com/v1/contract/galleryxtoken/token"
-        let headers : HTTPHeaders = ["Authorization": "Basic S0FTS0tYN085WkFFNTJKN0RMOFY2UUg5OmZRZlRxRE5zQ3Aybk1VV3I3aU5fcWEzLTlUMlA4dkRqczJpY21ucUc=", "Content-Type": "application/json", "X-Chain-Id": "1001"]
+        let headers : HTTPHeaders = [ "Content-Type": "application/json", "X-Chain-Id": "1001"]
         AF.request(url, method: .post, parameters: param, encoding: JSONEncoding.default, headers: headers)
             .responseData { (response) in
                 switch response.result {
@@ -129,7 +129,7 @@ class ViewController: UIViewController {
     func makeContract(completionHandler:  @escaping () -> ()){
         let param = ["alias": "galleryxtoken", "symbol": "GXT", "name":"Gallery X Token"]
         let url = "https://kip17-api.klaytnapi.com/v1/contract"
-        let headers : HTTPHeaders = ["Authorization": "Basic S0FTS0tYN085WkFFNTJKN0RMOFY2UUg5OmZRZlRxRE5zQ3Aybk1VV3I3aU5fcWEzLTlUMlA4dkRqczJpY21ucUc=", "Content-Type": "application/json", "X-Chain-Id": "1001"]
+        let headers : HTTPHeaders = [ "Content-Type": "application/json", "X-Chain-Id": "1001"]
         AF.request(url, method: .post, parameters: param, encoding: JSONEncoding.default, headers: headers)
             .responseData { (response) in
                 switch response.result {
@@ -149,7 +149,7 @@ class ViewController: UIViewController {
     
     func lookupToken(completionHandler:  @escaping () -> ()){
         let url = "https://kip17-api.klaytnapi.com/v1/contract/galleryxtoken/token/0x101"
-        let headers : HTTPHeaders = ["Authorization": "Basic S0FTS0tYN085WkFFNTJKN0RMOFY2UUg5OmZRZlRxRE5zQ3Aybk1VV3I3aU5fcWEzLTlUMlA4dkRqczJpY21ucUc=", "Content-Type": "application/json", "X-Chain-Id": "1001"]
+        let headers : HTTPHeaders = ["Content-Type": "application/json", "X-Chain-Id": "1001"]
         AF.request(url, method: .get, encoding: JSONEncoding.default, headers: headers)
             .responseData { (response) in
                 switch response.result {
